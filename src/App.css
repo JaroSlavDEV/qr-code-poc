@@ -44,7 +44,7 @@
 
 .approach {
   flex: 1;
-  margin-top: 50px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
 }
@@ -52,6 +52,7 @@
 .approach div:first-child {
   font-weight: 600;
   font-size: 20px;
+  height: 75px;
 }
 
 .approach:first-child {
@@ -60,7 +61,7 @@
 
 .qr-code-read-container {
   flex: 1;
-  margin: 50px auto 0;
+  margin: 0 auto;
 }
 
 .qr-code-read-container video {
