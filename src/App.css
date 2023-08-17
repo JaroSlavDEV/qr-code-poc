@@ -3,8 +3,8 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 100px);
-  width: calc(100vw - 100px);
+  height: calc(100vh - 20px);
+  width: calc(100vw - 20px);
 }
 
 .App-logo {
@@ -77,10 +77,4 @@ nav ul {
 
 nav ul li {
   list-style: none;
-}
-
-button {
-  width: 250px;
-  margin: 0 auto;
-  height: 50px;
 }
