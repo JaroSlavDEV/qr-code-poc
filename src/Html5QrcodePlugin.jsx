@@ -1,43 +1,64 @@
-import { useEffect, useRef } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { Html5Qrcode } from "html5-qrcode";
-
-import "./App.css";
 
 const QrCodeScannerContainerId = "html5qr-code-full-region";
 
-const createConfig = (props) => {
-  let config = {};
-
-  if (props.fps) config.fps = props.fps;
-  if (props.qrbox) config.qrbox = props.qrbox;
-  if (props.aspectRatio) config.aspectRatio = props.aspectRatio;
-  if (props.disableFlip !== undefined) config.disableFlip = props.disableFlip;
-
-  return config;
-};
-
-export const Html5QrcodePlugin = (props) => {
+export const Html5QrcodePlugin = () => {
   const instance = useRef();
+  const [data, setData] = useState("");
 
-  useEffect(() => {
-    const config = createConfig(props);
+  const onHtml5QrcodeResult = useCallback((decodedText, decodedResult) => {
+    setData(decodedText);
+    console.log("Result onHtml5Qrcode", decodedResult);
+  }, []);
+
+  useLayoutEffect(() => {
+    const config = {
+      fps: 10,
+      qrbox: 300,
+      disableFlip: false,
+    };
 
     instance.current = new Html5Qrcode(QrCodeScannerContainerId);
+
+    // setInterval(() => {
+    //   console.log(instance.current);
+    // }, [1000]);
 
     Html5Qrcode.getCameras()
       .then((devices) => {
         if (devices && devices.length) {
           const cameraId = devices[0].id;
 
-          instance.current.start(cameraId, config, props.qrCodeSuccessCallback);
+          instance.current
+            .start(cameraId, config, onHtml5QrcodeResult)
+            .then(() => {
+              console.log("started");
+            });
         }
       })
       .catch((error) => console.log(error));
-
-    return () => instance.current?.clear();
   }, []);
 
+  useEffect(
+    () => () => {
+      instance.current?.stop().then(() => {
+        instance.current?.clear();
+      });
+    },
+    []
+  );
+
   return (
-    <div id={QrCodeScannerContainerId} className="qr-code-read-container" />
+    <div className="approach">
+      <div>Html5-QRCode - {data}</div>
+      <div id={QrCodeScannerContainerId} className="qr-code-read-container" />
+    </div>
   );
 };
