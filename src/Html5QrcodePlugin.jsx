@@ -7,7 +7,7 @@ const config = {
   fps: 10,
   qrbox: 500,
   disableFlip: false,
-  facingMode: { exact: "environment" },
+  videoConstraints: { facingMode: { exact: "environment" } },
 };
 
 export const Html5QrcodePlugin = () => {
