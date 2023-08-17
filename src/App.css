@@ -72,7 +72,7 @@
 nav ul {
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
 }
 
 nav ul li {

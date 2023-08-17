@@ -16,7 +16,7 @@ export const NimiqQrcodePlugin = () => {
     instance.current = new QrScanner(
       document.querySelector(".qr-code-read-container-3 video"),
       (result) => onNimiqQrcodeResult(result.data, result),
-      { returnDetailedScanResult: true, highlightScanRegion: true }
+      { returnDetailedScanResult: true }
     );
 
     instance.current.start();
