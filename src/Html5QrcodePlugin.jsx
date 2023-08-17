@@ -38,7 +38,7 @@ export const Html5QrcodePlugin = () => {
         if (devices && devices.length) {
           const cameraId = devices[0].id;
 
-          setCameras(cameras);
+          setCameras(devices);
           setCamera(cameraId);
 
           instance.current.start(cameraId, config, onHtml5QrcodeResult);
