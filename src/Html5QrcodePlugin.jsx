@@ -58,7 +58,9 @@ export const Html5QrcodePlugin = () => {
 
   return (
     <div className="approach">
-      <div>Html5-QRCode - {data}</div>
+      <div>
+        {cameras.map(({ label }) => label).join(",")} Html5-QRCode - {data}
+      </div>
       <div id={QrCodeScannerContainerId} className="qr-code-read-container" />
       {cameras.length > 1 && <button onClick={onFlip}>FLIP</button>}
     </div>
