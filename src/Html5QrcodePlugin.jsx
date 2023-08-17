@@ -21,26 +21,18 @@ export const Html5QrcodePlugin = () => {
   useLayoutEffect(() => {
     const config = {
       fps: 10,
-      qrbox: 300,
+      qrbox: 500,
       disableFlip: false,
     };
 
     instance.current = new Html5Qrcode(QrCodeScannerContainerId);
-
-    // setInterval(() => {
-    //   console.log(instance.current);
-    // }, [1000]);
 
     Html5Qrcode.getCameras()
       .then((devices) => {
         if (devices && devices.length) {
           const cameraId = devices[0].id;
 
-          instance.current
-            .start(cameraId, config, onHtml5QrcodeResult)
-            .then(() => {
-              console.log("started");
-            });
+          instance.current.start(cameraId, config, onHtml5QrcodeResult);
         }
       })
       .catch((error) => console.log(error));

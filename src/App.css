@@ -60,7 +60,8 @@
 }
 
 .qr-code-read-container {
-  flex: 1;
+  width: 350px;
+  height: 350px;
   margin: 0 auto;
 }
 
