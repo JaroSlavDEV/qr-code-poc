@@ -51,7 +51,6 @@
 
 .approach div:first-child {
   font-weight: 600;
-  font-size: 20px;
   height: 75px;
 }
 
@@ -78,5 +77,10 @@ nav ul {
 
 nav ul li {
   list-style: none;
-  font-size: 20px;
+}
+
+button {
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
 }

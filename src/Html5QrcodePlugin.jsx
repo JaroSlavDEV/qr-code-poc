@@ -23,7 +23,7 @@ export const Html5QrcodePlugin = () => {
 
   const onFlip = useCallback(() => {
     const index = cameras.findIndex((prevCam) => prevCam.id === camera)[0];
-    const newCameraId = cameras[index + 1 < cameras.length ? index + 1 : 0];
+    const newCameraId = cameras[index + 1 < cameras.length ? index + 1 : 0].id;
 
     instance.current?.stop();
 
@@ -62,12 +62,13 @@ export const Html5QrcodePlugin = () => {
     <div className="approach">
       <div>
         Html5-QRCode - {data} <br />
-        Devices - {cameras.map(({ label }) => label).join(",")} <br />
+        Devices - {cameras.map(({ label }) => label).join(";")} <br />
         Current device -{" "}
         {cameras.find((prevCam) => prevCam.id === camera)?.label}
       </div>
       <div id={QrCodeScannerContainerId} className="qr-code-read-container" />
-      {cameras.length > 1 && <button onClick={onFlip}>FLIP</button>}
+      <button onClick={onFlip}>FLIP</button>
+      {/*{cameras.length > 1 && <button onClick={onFlip}>FLIP</button>}*/}
     </div>
   );
 };
