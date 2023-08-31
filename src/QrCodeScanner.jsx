@@ -19,10 +19,11 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
       fps: 100,
       qrbox: 250,
       disableFlip: false,
-      aspectRatio: window.innerWidth / (window.clientHeight - 60),
+      aspectRatio: window.clientWidth / (window.clientHeight - 60),
       // window.innerWidth /
       // (window.innerHeight - (window.innerWidth <= 768 ? 60 : 80)),
     };
+
     console.log(window);
     instance.current = new Html5Qrcode(QR_CODE_SCAN_CONTAINER_ID);
 
