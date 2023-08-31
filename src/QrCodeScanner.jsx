@@ -19,11 +19,12 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
     const width = document.body.offsetWidth;
     const minWidth = Math.min(height, width);
 
+    console.log(document.body.offsetHeight, document.body.offsetWidth);
     const config = {
       fps: 100,
       qrbox: { width: minWidth * 0.667, height: minWidth * 0.667 },
       disableFlip: false,
-      aspectRatio: Math.ceil((height / width) * 100) / 100,
+      aspectRatio: height / width,
       // window.innerWidth /
       // (window.innerHeight - (window.innerWidth <= 768 ? 60 : 80)),
     };
