@@ -15,16 +15,21 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
   );
 
   useEffect(() => {
-    const height = document.body.offsetHeight;
     const width = document.body.offsetWidth;
-    const minWidth = Math.min(height, width);
+    const height = document.body.offsetHeight;
+    const aspectRatio = width / height;
+    const reverseAspectRatio = height / width;
 
-    console.log(document.body.offsetHeight, document.body.offsetWidth);
+    const mobileAspectRatio =
+      reverseAspectRatio > 1.5
+        ? reverseAspectRatio + (reverseAspectRatio * 12) / 100
+        : reverseAspectRatio;
+
     const config = {
       fps: 100,
-      qrbox: { width: minWidth * 0.667, height: minWidth * 0.667 },
+      qrbox: 250,
       disableFlip: false,
-      aspectRatio: height / width,
+      aspectRatio: width < 600 ? mobileAspectRatio : aspectRatio,
       // window.innerWidth /
       // (window.innerHeight - (window.innerWidth <= 768 ? 60 : 80)),
     };
