@@ -1,44 +1,43 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Html5Qrcode } from "html5-qrcode";
+import { useCallback, useState, useMemo } from "react";
 
-const QrCodeScannerContainerId = "html5qr-code-full-region";
-
-const config = {
-  fps: 10,
-  qrbox: 500,
-  disableFlip: false,
-};
+import { QrCodeScanner } from "./QrCodeScanner";
+import { Dialog } from "./Dialog";
 
 export const Html5QrcodePlugin = () => {
-  const instance = useRef();
-  const [data, setData] = useState("");
+  const [isCheckInScanDialogOpen, setIsCheckInScanDialogOpen] = useState(false);
 
-  const onHtml5QrcodeResult = useCallback((decodedText, decodedResult) => {
-    setData(decodedText);
-    console.log("Result onHtml5Qrcode", decodedResult);
-  }, []);
+  const onCheckInScanDialogClose = useCallback(
+    () => setIsCheckInScanDialogOpen(false),
+    []
+  );
 
-  useEffect(() => {
-    instance.current = new Html5Qrcode(QrCodeScannerContainerId);
-
-    instance.current
-      .start({ facingMode: "environment" }, config, onHtml5QrcodeResult)
-      .catch((error) => console.log(error));
-  }, []);
-
-  useEffect(
-    () => () => {
-      instance.current?.stop().then(() => {
-        instance.current?.clear();
-      });
-    },
+  const onCheckInScanDialogToggle = useCallback(
+    () => setIsCheckInScanDialogOpen((prev) => !prev),
     []
   );
 
   return (
-    <div className="approach">
-      <div>Html5-QRCode - {data}</div>
-      <div id={QrCodeScannerContainerId} className="qr-code-read-container" />
-    </div>
+    <>
+      <header></header>
+      <button onClick={onCheckInScanDialogToggle}>Open</button>
+      <Dialog
+        className="check-in-scan-dialog"
+        isOpened={isCheckInScanDialogOpen}
+        onClose={onCheckInScanDialogClose}
+        size={"full-screen"}
+        closeIcon={true}
+      >
+        <span className="check-in-scan-message-header">
+          Hold camera to scan QR code
+        </span>
+        <QrCodeScanner
+          onSuccess={() => console.log("SUCCESS")}
+          pauseOnSuccess={true}
+        />
+        <span className="check-in-scan-message-footer">
+          QR code will automatically scan
+        </span>
+      </Dialog>
+    </>
   );
 };
