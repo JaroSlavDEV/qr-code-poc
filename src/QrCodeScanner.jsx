@@ -15,7 +15,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
   );
 
   useEffect(() => {
-    const height = document.body.offsetHeight - 60;
+    const height = document.body.offsetHeight;
     const width = document.body.offsetWidth;
     const minWidth = Math.min(height, width);
 
