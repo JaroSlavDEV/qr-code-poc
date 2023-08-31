@@ -19,7 +19,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
       fps: 100,
       qrbox: 250,
       disableFlip: false,
-      aspectRatio: 0.52888318356,
+      aspectRatio: 0.57301808066,
       // window.innerWidth /
       // (window.innerHeight - (window.innerWidth <= 768 ? 60 : 80)),
     };
