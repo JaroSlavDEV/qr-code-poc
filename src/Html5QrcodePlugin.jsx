@@ -25,9 +25,20 @@ export const Html5QrcodePlugin = () => {
   return (
     <>
       <header></header>
-      <button onClick={onCheckInScanDialogToggle}>Open</button>
-      {`RATIO: ${window.innerWidth / (window.innerHeight - 60)}`}
-      {code && <div className="code-text">{`Scanned code: ${code}`}</div>}
+      <div className="container-1">
+        <button onClick={onCheckInScanDialogToggle}>Open</button>
+        <div>{`offsetHeight ${
+          document.querySelector(".container-1")?.offsetHeight
+        }`}</div>
+        <div>{`offsetWidth ${
+          document.querySelector(".container-1")?.offsetWidth
+        }`}</div>
+        <div>{`window.innerWidth ${window.innerWidth}`}</div>
+        <div>{`window.innerHeight ${window.innerHeight}`}</div>
+
+        <div>{`RATIO: ${window.innerWidth / (window.innerHeight - 60)}`}</div>
+        {code && <div className="code-text">{`Scanned code: ${code}`}</div>}
+      </div>
       <Dialog
         className="check-in-scan-dialog"
         isOpened={isCheckInScanDialogOpen}
