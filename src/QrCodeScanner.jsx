@@ -16,7 +16,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
 
   useEffect(() => {
     const width = document.body.offsetWidth;
-    const height = document.body.offsetHeight;
+    const height = document.body.offsetHeight - 60;
     const aspectRatio = width / height;
     const reverseAspectRatio = height / width;
 
