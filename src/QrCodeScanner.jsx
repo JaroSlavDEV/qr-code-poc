@@ -24,7 +24,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
       reverseAspectRatio > 1.5
         ? reverseAspectRatio + (reverseAspectRatio * 12) / 100
         : reverseAspectRatio;
-
+    //
     const config = {
       fps: 100,
       qrbox: 250,
