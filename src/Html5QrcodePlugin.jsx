@@ -22,6 +22,10 @@ export const Html5QrcodePlugin = () => {
     setIsCheckInScanDialogOpen(false);
   }, []);
 
+  const onError = useCallback((error) => {
+    console.log(error);
+  }, []);
+
   return (
     <>
       <header></header>
@@ -42,7 +46,11 @@ export const Html5QrcodePlugin = () => {
         <span className="check-in-scan-message-header">
           Hold camera to scan QR code
         </span>
-        <QrCodeScanner onSuccess={onSuccess} pauseOnSuccess={true} />
+        <QrCodeScanner
+          onSuccess={onSuccess}
+          pauseOnSuccess={true}
+          onError={onError}
+        />
         <span className="check-in-scan-message-footer">
           QR code will automatically scan
         </span>
