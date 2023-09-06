@@ -34,7 +34,7 @@ export const Html5QrcodePlugin = () => {
     },
     []
   );
-
+  //
   return (
     <div className="approach">
       <div>Html5-QRCode - {data}</div>
