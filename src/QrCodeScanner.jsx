@@ -11,7 +11,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
       onSuccess(decodedText, result);
       pauseOnSuccess && instance.current?.stop();
     },
-    [onSuccess, pauseOnSuccess, instance.current]
+    [onSuccess, pauseOnSuccess]
   );
 
   useEffect(() => {
@@ -20,8 +20,6 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
       qrbox: 250,
       disableFlip: false,
       aspectRatio: 1,
-      width: 300,
-      height: 300,
     };
 
     instance.current = new Html5Qrcode(QR_CODE_SCAN_CONTAINER_ID);
@@ -38,7 +36,7 @@ export const QrCodeScanner = ({ onSuccess, onError, pauseOnSuccess }) => {
         .then(() => instance.current?.clear())
         .catch((error) => onError?.(error.message));
     };
-  }, []);
+  }, [successHandler, onError]);
 
   return (
     <div

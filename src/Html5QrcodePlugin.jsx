@@ -31,8 +31,6 @@ export const Html5QrcodePlugin = () => {
       <header></header>
       <div className="container-1">
         <button onClick={onCheckInScanDialogToggle}>Open</button>
-        <div>{`offsetHeight ${document.body.offsetHeight}`}</div>
-        <div>{`offsetWidth ${document.body.offsetWidth}`}</div>
 
         {code && <div className="code-text">{`Scanned code: ${code}`}</div>}
       </div>
