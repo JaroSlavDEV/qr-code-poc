@@ -2,7 +2,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: calc(100vh);
+  height: calc(100dvh);
   width: calc(100vw);
   background: red;
 }
